@@ -1,0 +1,31 @@
+@layer components {
+  /* 비슷한 과거 사례: 사례가 나란히 놓인 작은 카드. 넓으면 3열, 좁으면 1열. */
+  .history-cases {
+    container-type: inline-size;
+  }
+  .history-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+  @container (min-width: 34rem) {
+    .history-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @container (min-width: 46rem) {
+    .history-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  .history-case {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    min-width: 0;
+    padding: 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-inner);
+    word-break: keep-all;
+  }
+}

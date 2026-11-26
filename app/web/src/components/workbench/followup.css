@@ -1,0 +1,4 @@
+/* 후속 개선: 조사 파일을 끌어다 놓는 자리. 색, 글씨 크기, 모서리는 테마의 값(var(--...))만 쓴다. */
+@layer components {
+  .followup-drop { position: absolute; inset: 0.75rem; z-index: 5; display: grid; place-items: center; border-radius: var(--radius-container); border: 2px dashed var(--color-text-primary); background: var(--color-background-surface); pointer-events: none; }
+}

@@ -1,0 +1,51 @@
+@layer components {
+  .interview-chat {
+    width: 100%; max-width: 58rem; min-width: 0; margin-inline: auto;
+    overflow: hidden; border: 1px solid var(--color-border); border-radius: 1rem;
+    background: var(--color-background-surface); color: var(--color-text-primary);
+  }
+  .interview-chat__head {
+    display: flex; gap: .75rem; align-items: center; padding: 1rem 1.25rem;
+    background: var(--color-background-surface); border-bottom: 1px solid var(--color-border);
+  }
+  .interview-chat__head > svg { width: 1.65rem; height: 1.65rem; flex: none; }
+  .interview-chat__head h4 { margin: 0; font-size: 1rem; font-weight: 650; line-height: 1.45; }
+  .interview-chat__head p { margin: .12rem 0 0; font-size: .8125rem; color: var(--color-text-secondary); }
+  .interview-chat__log {
+    display: flex; flex-direction: column; gap: 1.15rem; overflow-y: auto;
+    max-height: min(66vh, 39rem); min-height: 10rem; padding: clamp(.9rem, 3%, 1.6rem);
+    scrollbar-width: thin; overflow-wrap: anywhere;
+  }
+  .interview-chat__row { display: flex; align-items: flex-start; gap: .55rem; }
+  .interview-chat__row[data-host] { justify-content: flex-end; }
+  .interview-chat__avatar {
+    display: grid; place-items: center; flex: none; width: 2.1rem; height: 2.1rem;
+    background: var(--color-background-muted); color: var(--color-text-secondary); border-radius: .78rem;
+  }
+  .interview-chat__avatar svg { width: 1.3rem; }
+  .interview-chat__message {
+    display: grid; justify-items: start; gap: .32rem; max-width: min(78%, 35rem); min-width: 0;
+  }
+  [data-host] > .interview-chat__message { justify-items: end; }
+  .interview-chat__name { color: var(--color-text-secondary); font-size: .8125rem; font-weight: 600; }
+  .interview-chat__bubble {
+    position: relative; background: var(--color-background-surface); color: var(--color-text-primary); padding: .65rem .85rem; border: 0;
+    border-radius: .05rem .85rem .85rem .85rem; text-align: start; line-height: 1.55;
+    font-size: .9375rem; box-shadow: inset 0 0 0 1px var(--color-border);
+  }
+  .interview-chat__bubble::before {
+    content: ""; position: absolute; top: 0; left: -.3rem;
+    border-top: .4rem solid var(--color-border); border-left: .35rem solid transparent;
+  }
+  [data-host] .interview-chat__bubble { background: var(--color-background-muted); box-shadow: none; border-radius: .85rem .05rem .85rem .85rem; }
+  [data-host] .interview-chat__bubble::before { left: auto; right: -.3rem; border: 0;
+    border-top: .4rem solid var(--color-background-muted); border-right: .35rem solid transparent; }
+  button.interview-chat__bubble { cursor: pointer; }
+  .interview-chat__bubble[aria-pressed="true"], .interview-chat__bubble:focus-visible,
+  .interview-chat__log:focus-visible { outline: 2px solid var(--color-text-primary); outline-offset: -2px; }
+  .interview-chat__text { white-space: pre-wrap; }
+  .interview-chat__reply { display: grid; gap: .15rem; border-left: 2px solid var(--color-border-emphasized);
+    margin-bottom: .45rem; padding-left: .5rem; color: var(--color-text-secondary); font-size: .79rem; }
+  .interview-chat__divider, .interview-chat__status { align-self: center; text-align: center; font-size: .8125rem; color: var(--color-text-secondary); }
+  .interview-chat__divider { padding: .2rem .65rem; border-radius: 2rem; background: var(--color-background-muted); }
+}

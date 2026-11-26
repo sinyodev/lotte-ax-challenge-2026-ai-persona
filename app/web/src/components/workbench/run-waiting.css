@@ -1,0 +1,70 @@
+.run-waiting {
+  container-type: inline-size;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25rem;
+  min-width: 0;
+}
+.run-waiting-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .5rem 1rem;
+}
+.run-waiting-progress { display: grid; gap: .5rem; }
+.run-waiting-guests {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-block-start: 1px solid var(--color-border);
+}
+.run-waiting-guest {
+  display: grid;
+  grid-template-columns: 6.5rem minmax(0, 15rem) minmax(0, 1fr);
+  align-items: baseline;
+  gap: 1rem;
+  padding-block: .625rem;
+  border-block-end: 1px solid var(--color-border);
+}
+.run-waiting-guest > * { min-width: 0; }
+.run-waiting-chose {
+  display: flex;
+  align-items: baseline;
+  gap: .5rem;
+}
+.run-waiting-chose > .astryx-text,
+.run-waiting-said.astryx-text {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+/* 우리 컨셉을 고른 줄: 제품 이름 앞의 작은 점 하나(처음부터 자리를 비워 두어 줄이 밀리지 않는다) */
+.run-waiting-mark {
+  flex-shrink: 0;
+  width: .5rem;
+  height: .5rem;
+  border-radius: var(--radius-full);
+  align-self: center;
+}
+.run-waiting-guest[data-ours] .run-waiting-mark { background: var(--color-accent); }
+.run-waiting-guest[data-new] { animation: run-waiting-in .45s ease-out both; }
+@keyframes run-waiting-in {
+  from { opacity: 0; transform: translateY(-.375rem); }
+  to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .run-waiting-guest[data-new] { animation: none; }
+}
+@container (max-width: 34rem) {
+  .run-waiting-guest { grid-template-columns: 5.5rem minmax(0, 1fr); row-gap: .25rem; }
+  .run-waiting-said { grid-column: 2; }
+}
+.run-waiting-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .5rem 1rem;
+}

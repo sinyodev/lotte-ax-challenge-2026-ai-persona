@@ -1,0 +1,15 @@
+@layer reset, theme, base, astryx-base, astryx-theme, components, utilities;
+
+@import "tailwindcss";
+@import "@astryxdesign/core/reset.css";
+@import "@astryxdesign/core/astryx.css";
+@import "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css";
+@import "../themes/lotte/overrides.css";
+
+/* 색, 글씨 크기, 모서리, 그림자의 값은 테마(themes/lotte)에만 둔다. 여기서는 숫자 모양만 정한다. */
+@layer base {
+  html {
+    color-scheme: light;
+    font-variant-numeric: tabular-nums;
+  }
+}

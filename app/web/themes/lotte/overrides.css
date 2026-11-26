@@ -1,0 +1,599 @@
+/*
+ * lotte 테마에서 편집기(astryx experimental theme editor)로 할 수 없는 것만 여기에 둔다.
+ * 편집기는 한 부품의 속성만 바꿀 수 있고, "어느 부품 안에 있는 다른 부품"은 고를 수 없다.
+ * 색은 테마 토큰(var(--...))으로만 쓴다. 앱은 src/index.css에서 이 파일을 불러온다.
+ * components 층에 두어 Astryx의 astryx-theme 층보다 뒤에 적용된다.
+ */
+@layer components {
+  /*
+   * 왼쪽 메뉴의 "새 테스트" 버튼: 흰 바탕(메뉴 안의 --color-neutral은 편집기에서 흰색으로 정함)에
+   * 1px 옅은 테두리, 높이 40px. 같은 보조 버튼이라도 입력창의 진행 방식 버튼은 회색 면에 테두리가 없어야 해서
+   * 메뉴 안의 보조 버튼에만 건다.
+   */
+  [data-astryx-theme="lotte"] .astryx-side-nav .astryx-button[data-variant="secondary"] {
+    --size-element-lg: 40px;
+    box-shadow: inset 0 0 0 1px var(--color-border);
+  }
+
+  /*
+   * 대화 안의 버튼 묶음(data-chat-actions): 주 버튼은 검정 면에 흰 글씨(빨강은 쓰지 않는다),
+   * 나머지는 흰 면에 1px 테두리. 화면 전체의 주 버튼(롯데 레드)과 다르게 대화 안에서만 바꾼다.
+   */
+  [data-astryx-theme="lotte"] [data-chat-actions] {
+    --color-accent: var(--color-text-primary);
+    --color-on-accent: var(--color-background-surface);
+  }
+  [data-astryx-theme="lotte"] [data-chat-actions] .astryx-button[data-variant="secondary"] {
+    background-color: var(--color-background-surface);
+    box-shadow: inset 0 0 0 1px var(--color-border);
+  }
+
+  /*
+   * 08: 대화 안의 칩과 버튼(data-choice-chip)은 모두 한 줄 Button이라 높이와 글씨 크기가 같다.
+   * 고른 칩은 테두리만 진하다(그림자라 크기가 바뀌지 않는다). 지난 차례의 칩(data-static)은 누를 수 없고 올려도 바뀌지 않는다.
+   */
+  [data-astryx-theme="lotte"] [data-choice-chip][data-chosen] .astryx-button[data-variant="secondary"] {
+    box-shadow: inset 0 0 0 1.5px var(--color-text-primary);
+  }
+  [data-astryx-theme="lotte"] [data-choice-chip][data-static] .astryx-button {
+    pointer-events: none;
+  }
+  /* 덧말 풍선은 줄을 바꾼 옆 버튼 위에 뜰 수 있다. 풍선이 마우스를 붙잡아 옆 버튼을 가리지 않게 한다 */
+  [data-astryx-theme="lotte"] [data-choice-chip] .astryx-tooltip {
+    pointer-events: none;
+  }
+
+  /*
+   * 04: 첫 화면 위쪽의 전환. 옅은 회색 알약 판 위에 고른 쪽만 흰 알약.
+   */
+  [data-astryx-theme="lotte"] [data-part-switch] .astryx-segmented-control {
+    background-color: var(--color-neutral);
+    border-radius: var(--radius-full);
+  }
+  [data-astryx-theme="lotte"] [data-part-switch] .astryx-segmented-control-item {
+    border-radius: var(--radius-full);
+    padding-inline: 18px;
+  }
+  [data-astryx-theme="lotte"] [data-part-switch] .astryx-segmented-control-item[data-selected="selected"] {
+    background-color: var(--color-background-surface);
+    color: var(--color-text-primary);
+    box-shadow: 0 1px 2px rgb(0 0 0 / 8%), inset 0 0 0 1px var(--color-border);
+  }
+
+  /* 04: 첫 화면의 확정한 컨셉 카드. 흰 바탕에 1px 테두리 */
+  [data-astryx-theme="lotte"] [data-concept-pick] {
+    border-radius: var(--radius-container);
+    background-color: var(--color-background-surface);
+    box-shadow: inset 0 0 0 1px var(--color-border);
+  }
+  [data-astryx-theme="lotte"] [data-concept-pick] > .astryx-item {
+    border-radius: inherit;
+    padding: 12px 16px;
+  }
+
+  /*
+   * 04, 12: 컨셉 보드. 작업대 카드 안의 컨셉 카드는 1px 테두리, 제품 그림 자리는 옅은 면에 용기의 윤곽.
+   * 두 부분(예시 시안, 제품 특징)의 제목은 옅은 면의 얇은 띠. 띠가 카드의 둥근 모서리를 넘지 않게 자른다.
+   * "이런 점이 좋아요"는 1px 테두리 상자. 제품 특징의 줄 사이에 가는 선.
+   */
+  [data-astryx-theme="lotte"] [data-concept-card] > .astryx-card {
+    box-shadow: inset 0 0 0 1px var(--color-border);
+    overflow: hidden;
+  }
+  [data-astryx-theme="lotte"] [data-concept-image] {
+    border-radius: var(--radius-inner);
+    background-color: var(--color-background-muted);
+  }
+  [data-astryx-theme="lotte"] [data-concept-shape] {
+    color: var(--color-border-emphasized);
+  }
+  /* 컨셉 카드의 묶음 사이 가는 선. 넓은 카드(두 열)에서는 두 열 사이에 세로 선 */
+  [data-astryx-theme="lotte"] [data-concept-section] + [data-concept-section] {
+    border-top: 1px solid var(--color-border);
+  }
+  @container (min-width: 48rem) {
+    [data-astryx-theme="lotte"] [data-concept-col] + [data-concept-col] {
+      border-left: 1px solid var(--color-border);
+    }
+  }
+  @container (max-width: 47.99rem) {
+    [data-astryx-theme="lotte"] [data-concept-col] + [data-concept-col] > [data-concept-section]:first-child {
+      border-top: 1px solid var(--color-border);
+    }
+  }
+  /* 가격표: 위에 굵은 검은 선(매대의 가격표 띠) */
+  [data-astryx-theme="lotte"] [data-price-tag] {
+    border-top: 2px solid var(--color-text-primary);
+  }
+  /* 차별점: 비교 묶음의 결론. 왼쪽에 굵은 선 */
+  [data-astryx-theme="lotte"] [data-concept-pod] {
+    border-left: 3px solid var(--color-text-primary);
+  }
+  [data-astryx-theme="lotte"] [data-spec-row] + [data-spec-row] {
+    border-top: 1px solid var(--color-border);
+  }
+
+  /*
+   * 지시서 33(다시 그림): 제품 사양 표. 열 머리 아래 진한 선, 행 사이 가는 선.
+   * 매대에 올린 규격의 열은 옅은 면. 고를 수 있는 열 머리는 면 없는 단추이고 올려놓으면 옅은 면.
+   */
+  [data-astryx-theme="lotte"] [data-spec-table] thead:not(:last-child) {
+    border-bottom: 1px solid var(--color-border-emphasized);
+  }
+  [data-astryx-theme="lotte"] [data-spec-table] tbody tr + tr {
+    border-top: 1px solid var(--color-border);
+  }
+  [data-astryx-theme="lotte"] [data-spec-table] [data-shelf] {
+    background-color: var(--color-background-muted);
+  }
+  [data-astryx-theme="lotte"] [data-spec-table] thead [data-shelf] {
+    border-top-left-radius: var(--radius-inner);
+    border-top-right-radius: var(--radius-inner);
+  }
+  [data-astryx-theme="lotte"] [data-spec-col-pick] {
+    border-radius: var(--radius-inner);
+    color: inherit;
+    cursor: pointer;
+  }
+  [data-astryx-theme="lotte"] [data-spec-col-pick]:disabled {
+    cursor: default;
+  }
+  [data-astryx-theme="lotte"] [data-spec-col-pick]:not(:disabled):not([aria-pressed="true"]):hover {
+    background-color: var(--color-background-muted);
+  }
+  [data-astryx-theme="lotte"] [data-spec-col-pick]:focus-visible {
+    outline: 2px solid var(--color-border-emphasized);
+    outline-offset: 2px;
+  }
+
+  /*
+   * 15: 매대 테스트 카드와 결과 카드. 입체 매장 자리, 가로 막대(바탕은 옅은 면, 채움은 진한 선의 색, 우리 컨셉만 강조색),
+   * 흔들릴 수 있는 폭(가는 막대 위의 폭과 점), 전에 집던 것의 세 칸, 손님의 말(왼쪽 선).
+   */
+  [data-astryx-theme="lotte"] [data-run-store] {
+    border-radius: var(--radius-inner);
+    /* 말풍선이 위쪽에서 잘리지 않게 넘치는 것을 보인다(그림은 canvas가 스스로 둥글게 잘린다) */
+    overflow: visible;
+    background-color: var(--color-background-muted);
+  }
+  [data-astryx-theme="lotte"] [data-run-store] canvas {
+    border-radius: var(--radius-inner);
+  }
+  /* 입체 매장의 말풍선: 매대 앞에 선 손님의 말(테스트에서 실제로 온 답). 아래에 작은 꼬리. */
+  [data-astryx-theme="lotte"] [data-store-bubble] {
+    position: relative;
+    width: max-content;
+    max-width: 200px;
+    padding: 8px 12px;
+    border-radius: 14px;
+    background-color: var(--color-background-surface);
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-border);
+    box-shadow: 0 4px 14px rgb(0 0 0 / 0.12);
+    font-size: 12.5px;
+    line-height: 1.45;
+    word-break: keep-all;
+    transform: translateY(-50%);
+    animation: store-bubble-in 0.25s ease-out;
+  }
+  [data-astryx-theme="lotte"] [data-store-bubble]::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -6px;
+    width: 10px;
+    height: 10px;
+    background-color: var(--color-background-surface);
+    border-right: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    transform: translateX(-50%) rotate(45deg);
+  }
+  @keyframes store-bubble-in {
+    from { opacity: 0; scale: 0.9; }
+    to { opacity: 1; scale: 1; }
+  }
+  [data-astryx-theme="lotte"] [data-run-bar] {
+    position: relative;
+    height: 8px;
+    border-radius: var(--radius-full);
+    background-color: var(--color-background-muted);
+    overflow: hidden;
+  }
+  [data-astryx-theme="lotte"] [data-run-bar] > [data-run-fill] {
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: 0;
+    border-radius: inherit;
+    background-color: var(--color-border-emphasized);
+    transition: width 400ms ease;
+  }
+  [data-astryx-theme="lotte"] [data-run-bar][data-self] > [data-run-fill] {
+    background-color: var(--color-accent);
+  }
+  [data-astryx-theme="lotte"] [data-run-range] {
+    position: relative;
+    height: 4px;
+    border-radius: var(--radius-full);
+    background-color: var(--color-background-muted);
+  }
+  [data-astryx-theme="lotte"] [data-run-range] > [data-run-range-span] {
+    position: absolute;
+    inset-block: 0;
+    border-radius: inherit;
+    background-color: var(--color-border-emphasized);
+  }
+  [data-astryx-theme="lotte"] [data-run-range] > [data-run-range-dot] {
+    position: absolute;
+    top: 50%;
+    width: 10px;
+    height: 10px;
+    margin-inline-start: -5px;
+    transform: translateY(-50%);
+    border-radius: var(--radius-full);
+    background-color: var(--color-text-primary);
+  }
+  [data-astryx-theme="lotte"] [data-run-cell] {
+    border-radius: var(--radius-inner);
+    box-shadow: inset 0 0 0 1px var(--color-border);
+  }
+  [data-astryx-theme="lotte"] [data-run-quote] {
+    border-inline-start: 2px solid var(--color-border);
+  }
+  [data-astryx-theme="lotte"] [data-run-section] + [data-run-section] {
+    border-top: 1px solid var(--color-border);
+  }
+
+  /*
+   * 19: 개선안 테스트의 타일. 1px 옅은 테두리, 아직 돌리지 않은 안은 점선, 가장 나은 안 하나만 강조색 테두리
+   * (그림자라 크기가 바뀌지 않는다). 막대는 결과 카드의 data-run-bar와 같은 모양이고, 기존안의 자리를 강조색 세로 눈금으로 긋는다.
+   * 기존안과의 차이: 많으면 성공의 색, 적거나 차이가 없으면 글씨의 색.
+   */
+  [data-astryx-theme="lotte"] [data-improve-tile] {
+    border-radius: var(--radius-inner);
+    box-shadow: inset 0 0 0 1px var(--color-border);
+    background-color: var(--color-background-surface);
+  }
+  [data-astryx-theme="lotte"] [data-improve-tile][data-pending] {
+    box-shadow: none;
+    outline: 1px dashed var(--color-border-emphasized);
+    outline-offset: -1px;
+  }
+  [data-astryx-theme="lotte"] [data-improve-tile][data-best] {
+    box-shadow: var(--shadow-inset-selected);
+  }
+  [data-astryx-theme="lotte"] [data-improve-bar] {
+    position: relative;
+    height: 8px;
+    border-radius: var(--radius-full);
+    background-color: var(--color-background-muted);
+  }
+  [data-astryx-theme="lotte"] [data-improve-bar] > [data-improve-fill] {
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: 0;
+    border-radius: inherit;
+    background-color: var(--color-border-emphasized);
+    transition: width 400ms ease;
+  }
+  [data-astryx-theme="lotte"] [data-improve-bar] > [data-improve-mark] {
+    position: absolute;
+    top: -3px;
+    bottom: -3px;
+    width: 2px;
+    margin-inline-start: -1px;
+    background-color: var(--color-accent);
+  }
+  [data-astryx-theme="lotte"] [data-improve-delta] {
+    color: var(--color-text-primary);
+  }
+  [data-astryx-theme="lotte"] [data-improve-delta="more"] {
+    color: var(--color-success);
+  }
+
+  /*
+   * 06: 고를 수 있다는 네모 칸. 자리는 늘 있고 고르면 채워진다(체크는 늘 그려 두고 색만 바꾼다).
+   */
+  [data-astryx-theme="lotte"] [data-check-box] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    background-color: var(--color-background-surface);
+    box-shadow: inset 0 0 0 1.5px var(--color-border-emphasized);
+    color: transparent;
+    --color-icon-primary: transparent;
+    transition: background-color 120ms ease, box-shadow 120ms ease;
+  }
+  [data-astryx-theme="lotte"] [data-check-box][data-checked] {
+    background-color: var(--color-text-primary);
+    box-shadow: inset 0 0 0 1.5px var(--color-text-primary);
+    color: var(--color-background-surface);
+    --color-icon-primary: var(--color-background-surface);
+  }
+  [data-astryx-theme="lotte"] [data-check-box] .astryx-icon {
+    color: inherit;
+  }
+
+  /*
+   * 06: 카드 안에서 고르기(data-pickable). 고르면 테두리가 진해진다(두께는 그림자라 크기가 바뀌지 않는다).
+   */
+  [data-astryx-theme="lotte"] [data-pickable] {
+    border-radius: var(--radius-container);
+    cursor: pointer;
+    outline: none;
+  }
+  [data-astryx-theme="lotte"] [data-pickable][data-locked] {
+    cursor: default;
+  }
+  [data-astryx-theme="lotte"] [data-pickable] > [data-idea-card] > .astryx-card,
+  [data-astryx-theme="lotte"] [data-pickable] > [data-concept-card] > .astryx-card {
+    transition: box-shadow 120ms ease;
+  }
+  /* 고르는 차례: 고르기 전부터 테두리가 진하고, 올리면 더 진해진다. 머리 띠의 오른쪽에 "눌러서 고르기" */
+  [data-astryx-theme="lotte"] [data-pickable]:not([data-locked]) > * > .astryx-card {
+    box-shadow: inset 0 0 0 1px var(--color-border-emphasized);
+  }
+  [data-astryx-theme="lotte"] [data-pickable]:not([data-locked]):hover > * > .astryx-card {
+    box-shadow: inset 0 0 0 2px var(--color-border-emphasized);
+  }
+  [data-astryx-theme="lotte"] [data-pickable]:not([data-locked]) [data-board-head] {
+    background: var(--color-background-muted);
+  }
+  [data-astryx-theme="lotte"] [data-pickable][data-picked] [data-board-head] {
+    background: var(--color-text-primary);
+    color: var(--color-background-surface);
+  }
+  [data-astryx-theme="lotte"] [data-pickable][data-picked] [data-board-head] .astryx-text {
+    color: inherit;
+  }
+  [data-astryx-theme="lotte"] [data-pickable][data-picked] > * > .astryx-card,
+  [data-astryx-theme="lotte"] [data-pickable][data-picked]:hover > * > .astryx-card {
+    box-shadow: inset 0 0 0 2px var(--color-text-primary);
+  }
+  [data-astryx-theme="lotte"] [data-pickable]:focus-visible > * > .astryx-card {
+    box-shadow: inset 0 0 0 2px var(--color-text-primary), 0 0 0 2px var(--color-background-surface), 0 0 0 4px var(--color-border-emphasized);
+  }
+
+  /* 06: 아이디어 카드. 컨셉 카드처럼 흰 면에 1px 테두리 */
+  [data-astryx-theme="lotte"] [data-idea-card] > .astryx-card {
+    box-shadow: inset 0 0 0 1px var(--color-border);
+  }
+
+  /*
+   * 06, 10: 작은 이름표(data-tag). 칠성이의 제안, 내 아이디어, 기획자의 생각, 찾아본 것의 출처.
+   * 웹에서 찾은 것만 면 없이 점선 테두리라 한눈에 구별된다. 출처의 이름은 한 줄에서 자른다.
+   */
+  [data-astryx-theme="lotte"] [data-tag] {
+    display: inline-flex;
+    align-items: center;
+    max-width: 100%;
+    min-width: 0;
+    padding: 1px 8px;
+    border-radius: 6px;
+    background-color: var(--color-neutral);
+    vertical-align: middle;
+  }
+  [data-astryx-theme="lotte"] [data-tag="dashed"] {
+    background-color: var(--color-background-surface);
+    outline: 1px dashed var(--color-text-secondary);
+    outline-offset: -1px;
+  }
+  [data-astryx-theme="lotte"] [data-source-tag] {
+    overflow: hidden;
+  }
+  /* 출처 링크: 이름이 길면 한 줄에서 자르고 새 창 표시는 끝에 남긴다 */
+  [data-astryx-theme="lotte"] [data-source-tag] > .astryx-link {
+    display: inline-flex;
+    align-items: center;
+    min-width: 0;
+    max-width: 100%;
+  }
+  [data-astryx-theme="lotte"] [data-source-tag] > .astryx-link > .astryx-text {
+    display: block;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  /* 06: 찾아본 것의 항목. 사이에 1px 선, 새 항목은 잠깐 옅은 면 */
+  [data-astryx-theme="lotte"] [data-evidence-item] {
+    padding-block: 12px;
+    border-radius: var(--radius-inner);
+    transition: background-color 600ms ease;
+  }
+  [data-astryx-theme="lotte"] [data-evidence-item]:first-child {
+    padding-block-start: 0;
+  }
+  [data-astryx-theme="lotte"] [data-evidence-item] + [data-evidence-item] {
+    border-top: 1px solid var(--color-border);
+  }
+  [data-astryx-theme="lotte"] [data-evidence-item][data-fresh] {
+    background-color: var(--color-background-muted);
+    box-shadow: 0 0 0 8px var(--color-background-muted);
+    transition: none;
+  }
+  /* 06: 첫 화면의 인사. 낱말 단위로 줄을 바꾸고, 좁으면 글씨를 한 단계 줄인다 */
+  [data-astryx-theme="lotte"] [data-greeting] .astryx-heading {
+    word-break: keep-all;
+    text-wrap: balance;
+  }
+  @media (max-width: 900px) {
+    [data-astryx-theme="lotte"] [data-greeting] .astryx-heading {
+      font-size: var(--text-display-3-size);
+      line-height: var(--text-display-3-leading);
+    }
+  }
+
+  /* 06: 확정한 컨셉 카드. 맨 아래 점선 위로 "매대에 올리기" */
+  [data-astryx-theme="lotte"] [data-concept-bundle] {
+    border-radius: var(--radius-container);
+    background-color: var(--color-background-surface);
+    box-shadow: inset 0 0 0 1px var(--color-border);
+    cursor: pointer;
+    transition: box-shadow 120ms ease;
+  }
+  [data-astryx-theme="lotte"] [data-concept-bundle]:hover {
+    box-shadow: inset 0 0 0 1px var(--color-border-emphasized);
+  }
+  [data-astryx-theme="lotte"] [data-concept-bundle]:focus-visible {
+    outline: 2px solid var(--color-border-emphasized);
+    outline-offset: 2px;
+  }
+  [data-astryx-theme="lotte"] [data-concept-bundle-foot] {
+    border-top: 1px dashed var(--color-border);
+  }
+
+  /* 작업대에서 새로 열리거나 바뀐 카드: 잠깐 선택 테두리를 두른다 */
+  [data-astryx-theme="lotte"] [data-workbench-card] > .astryx-card {
+    transition: box-shadow 400ms ease;
+  }
+  [data-astryx-theme="lotte"] [data-workbench-card][data-flash] > .astryx-card {
+    box-shadow: var(--shadow-inset-selected);
+  }
+}
+
+/*
+ * 08: 상태는 글이 아니라 표시로 보인다. 움직임의 값은 여기에만 둔다.
+ */
+:root {
+  --motion-shimmer: 2.2s;
+  --motion-fresh: 1.6s;
+  --motion-move: 260ms;
+}
+@layer components {
+  /* 하는 일 표시의 이름: 하는 중이면 글씨에 빛이 지나간다(Text Shimmer). 끝나면 빛이 멈춘다 */
+  [data-astryx-theme="lotte"] [data-shimmer] .astryx-text {
+    color: transparent;
+    background-image: linear-gradient(
+      90deg,
+      var(--color-text-secondary) 0%,
+      var(--color-text-secondary) 38%,
+      var(--color-text-primary) 50%,
+      var(--color-text-secondary) 62%,
+      var(--color-text-secondary) 100%
+    );
+    background-size: 250% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: ax-shimmer var(--motion-shimmer) linear infinite;
+  }
+  [data-astryx-theme="lotte"] [data-activity="done"] .astryx-text,
+  [data-astryx-theme="lotte"] [data-activity="stopped"] .astryx-text {
+    color: var(--color-text-secondary);
+  }
+
+  /*
+   * 대화 목록(Astryx ChatMessageList, role=log)은 키보드로 스크롤할 수 있게 tabindex=0이라 포커스를 받으면
+   * 강조색 2px 테두리(outline, offset -2px)가 대화 영역 둘레에 남는다. 강조 테두리는 방금 바뀐 작업대 카드에만 쓰므로 끈다.
+   */
+  [data-astryx-theme="lotte"] .astryx-chat-message-list:focus,
+  [data-astryx-theme="lotte"] .astryx-chat-message-list:focus-visible {
+    outline: none;
+  }
+
+  /* 근거 본문: 세 줄에서 자른 것은 눌러서 펼친다 */
+  [data-astryx-theme="lotte"] [data-clamp] {
+    cursor: pointer;
+    border-radius: var(--radius-inner);
+    outline: none;
+  }
+  [data-astryx-theme="lotte"] [data-clamp]:focus-visible {
+    box-shadow: 0 0 0 2px var(--color-border-emphasized);
+  }
+
+  /* 접은 메뉴의 매대, 소비자 패널, 신뢰도: 더하기 버튼과 같은 40px 원형, 올려놓으면 옅은 면 */
+  [data-astryx-theme="lotte"] [data-rail-link] .astryx-button {
+    --size-element-lg: 40px;
+    border-radius: var(--radius-full);
+  }
+
+  /*
+   * 10: 방금 고쳐진 칸(data-changed). 다른 안과 값이 다른 칸은 글씨의 진하기로 보이므로,
+   * 고쳐진 칸은 그와 헷갈리지 않게 면(잠깐)과 이름 옆의 작은 점(남음)으로 보인다.
+   */
+  [data-astryx-theme="lotte"] [data-changed] {
+    border-radius: var(--radius-inner);
+    animation: ax-fresh-wash var(--motion-fresh) ease-out;
+  }
+  [data-astryx-theme="lotte"] [data-changed-dot] {
+    display: inline-block;
+    flex-shrink: 0;
+    width: 6px;
+    height: 6px;
+    border-radius: var(--radius-full);
+    background-color: var(--color-text-primary);
+    align-self: center;
+  }
+
+  /* 10: 기획 브리프에서 방금 바뀐 칸 */
+  [data-astryx-theme="lotte"] [data-brief-row] {
+    border-radius: var(--radius-inner);
+  }
+  [data-astryx-theme="lotte"] [data-brief-row][data-fresh] {
+    animation: ax-fresh-wash var(--motion-fresh) ease-out;
+  }
+
+  /* 10: 아이디어 보드. 새로 들어온 카드는 잠깐 옅은 면, 순서가 바뀐 카드는 옛 자리에서 미끄러져 온다 */
+  [data-astryx-theme="lotte"] [data-flip-id] {
+    transition: transform var(--motion-move) ease;
+  }
+  [data-astryx-theme="lotte"] [data-flip-id][data-fresh] [data-idea-card] > .astryx-card {
+    animation: ax-fresh-card var(--motion-fresh) ease-out;
+  }
+  /* 남긴 아이디어: 테두리를 한 단계 진하게(고르는 차례의 굵은 테두리와는 다르다) */
+  [data-astryx-theme="lotte"] [data-idea-card]:where([data-kept]) > .astryx-card {
+    box-shadow: inset 0 0 0 1px var(--color-border-emphasized);
+  }
+
+  /* 11: 최근 대화의 줄. 올려놓거나 키보드로 들어오면 오른쪽 끝의 표시 자리에 지우기 버튼이 겹쳐 나온다 */
+  [data-astryx-theme="lotte"] [data-recent-row] [data-recent-delete] {
+    opacity: 0;
+    pointer-events: none;
+  }
+  [data-astryx-theme="lotte"] [data-recent-row]:hover [data-recent-delete],
+  [data-astryx-theme="lotte"] [data-recent-row]:focus-within [data-recent-delete] {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  [data-astryx-theme="lotte"] [data-recent-row]:hover [data-recent-mark],
+  [data-astryx-theme="lotte"] [data-recent-row]:focus-within [data-recent-mark] {
+    visibility: hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-astryx-theme="lotte"] [data-shimmer] .astryx-text {
+      animation: none;
+      color: var(--color-text-secondary);
+      background-image: none;
+    }
+    [data-astryx-theme="lotte"] [data-changed],
+    [data-astryx-theme="lotte"] [data-brief-row][data-fresh],
+    [data-astryx-theme="lotte"] [data-flip-id][data-fresh] > * {
+      animation: none;
+    }
+    [data-astryx-theme="lotte"] [data-flip-id] {
+      transition: none;
+    }
+  }
+}
+@keyframes ax-fresh-wash {
+  0%, 30% { background-color: var(--color-background-muted); box-shadow: 0 0 0 4px var(--color-background-muted); }
+  100% { background-color: transparent; box-shadow: 0 0 0 4px transparent; }
+}
+@keyframes ax-fresh-card {
+  0%, 30% { background-color: var(--color-background-muted); }
+  100% { background-color: var(--color-background-surface); }
+}
+@keyframes ax-shimmer {
+  from { background-position: 100% 0; }
+  to { background-position: 0% 0; }
+}
+/*
+ * 칠성이의 색. 칠성이 캐릭터에만 쓰고 다른 부품에는 쓰지 않는다(화면의 강조색은 롯데 레드 하나다).
+ * 캐릭터를 그리는 open-bot-avatar가 색을 값으로 받기 때문에 편집기의 토큰이 아니라 여기에 변수로 둔다.
+ */
+:root {
+  --color-chilseong: #12a150;
+}

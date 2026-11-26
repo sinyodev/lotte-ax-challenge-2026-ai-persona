@@ -1,0 +1,8 @@
+/* 견본(/proto/analysis) 전용. 색, 글씨 크기, 모서리는 테마의 값만 쓴다. */
+@layer components {
+  .bap { background: var(--color-background-surface); word-break: keep-all; }
+  .bap-chat { width: 30rem; border-inline-end: 1px solid var(--color-border); }
+  [data-astryx-theme="lotte"] .bap-chat { --color-accent: var(--color-text-primary); --color-on-accent: var(--color-background-surface); }
+  .bap-bench { background: var(--color-background-muted); }
+  .bap-card { padding: 1.5rem 1.75rem; border-radius: var(--radius-container); background: var(--color-background-surface); }
+}

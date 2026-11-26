@@ -1,0 +1,44 @@
+@layer components {
+  .rd {
+    container-type: inline-size;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    min-inline-size: 0;
+  }
+
+  /* 머리 */
+  .rd-head { display: flex; flex-direction: column; gap: .375rem; }
+  .rd-title { display: flex; flex-wrap: wrap; align-items: baseline; gap: .25rem .75rem; }
+  .rd-badge { margin-inline-start: auto; align-self: center; }
+  .rd-progress {
+    display: grid;
+    grid-template-columns: auto minmax(6rem, 1fr) auto;
+    align-items: center;
+    gap: .75rem;
+    padding-block-start: .25rem;
+  }
+
+  @container (max-width: 40rem) {
+    .rd-progress { grid-template-columns: minmax(0, 1fr); }
+  }
+
+  /* 전체 결과 표 */
+  .rd-section { display: flex; flex-direction: column; gap: .625rem; }
+  .rd-quotes-rest { display: grid; gap: .625rem; }
+  .rd-quote {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    margin: 0;
+    padding: .75rem .875rem;
+    background: var(--color-background-muted);
+    border-radius: var(--radius-element);
+  }
+  .rd-quote blockquote { margin: 0; }
+  .rd-quote-who { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem; }
+  .rd-quote-meta { display: flex; flex-wrap: wrap; gap: .125rem .625rem; min-inline-size: 0; }
+
+  .rd-all { border-block-start: 1px solid var(--color-border); padding-block-start: .75rem; }
+  .rd-tables { display: flex; flex-direction: column; gap: 1.25rem; padding-block-start: .75rem; }
+}

@@ -1,0 +1,31 @@
+@layer components {
+  /*
+   * 11-25: 컨셉 보드(세로형). 머리 띠 아래 가는 선, 위쪽(소비자에게 보이는 보드)의 묶음 사이 가는 선,
+   * 소비자 인식은 왼쪽 굵은 선, 아래쪽 기획자용 "제품 스펙"은 옅은 면에 위쪽 진한 선으로 다른 구역임을 보인다.
+   */
+  [data-board] [data-board-head] {
+    border-bottom: 1px solid var(--color-border);
+  }
+  [data-board] [data-board-face] [data-board-section] + [data-board-section] {
+    border-top: 1px solid var(--color-border);
+  }
+  [data-board] [data-board-insight] {
+    border-left: 3px solid var(--color-text-primary);
+  }
+  [data-board] [data-board-face] [data-concept-image] {
+    min-height: 13rem;
+  }
+  [data-board] [data-board-spec] {
+    flex: 1;
+    /* 그림 자리(옅은 면)와 헷갈리지 않게 옅은 면에 회색을 조금 섞는다(둘 다 테마의 값) */
+    background-color: color-mix(in srgb, var(--color-background-muted), var(--color-background-gray) 35%);
+    border-top: 2px solid var(--color-border-emphasized);
+  }
+  [data-board] [data-board-spec] [data-board-section] {
+    border-top: 1px solid var(--color-border);
+  }
+  /* 옅은 면 위의 표: 행 사이 선은 그대로, 규격 열의 면은 바탕과 겹치지 않게 흰 면 */
+  [data-board] [data-board-spec] [data-spec-table] [data-shelf] {
+    background-color: var(--color-background-surface);
+  }
+}

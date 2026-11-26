@@ -1,0 +1,19 @@
+.DS_Store
+__pycache__/
+.venv/
+node_modules/
+dist/
+
+# 원시 자료와 대회 제공 자료는 저장소에 넣지 않는다
+data/raw/
+data/onsite/
+data/ours/persona_profiles.csv
+
+# 실행 기록과 캐시
+app/server/cache
+app/server/store/
+
+# 키가 든 환경 파일
+.env
+.env.*
+!.env.example

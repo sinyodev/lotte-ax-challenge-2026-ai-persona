@@ -1,0 +1,438 @@
+/*
+ * 신제품 제안서 화면 전용(지시서 14의 4절). 인쇄 문서라 종이의 치수와 글씨는 mm와 pt로 이 파일 한 곳에 둔다.
+ * 색은 테마 토큰만 쓴다: 글씨는 검정 하나(--color-text-primary), 선은 가는 회색(--color-border-emphasized).
+ * 강조색과 초록은 종이 안에 쓰지 않는다. 배경색 없이도 표가 보이게 선은 모두 테두리로 그린다.
+ * 예외(지시서 22): 결과 보고서의 검토 의견 칸(weak·cannibal이면 경고의 면)과 변경안 비교의 막대(나은 안만 강조색).
+ * 이 둘은 인쇄에서도 색이 나오게 print-color-adjust: exact.
+ */
+@layer components {
+  [data-proposal-screen] {
+    min-height: 100vh;
+    background-color: var(--color-background-muted);
+  }
+  [data-proposal-bar] {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: var(--color-background-surface);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  /* ---------- 종이 ---------- */
+  /* 앞선 층(초기화)이 p 등에 정한 글씨 크기를 종이 안에서는 따르지 않는다. 아래의 칸마다의 크기가 이긴다 */
+  [data-paper] :where(p, li, figcaption, h1, h2, h3, th, td, span, blockquote) {
+    font-size: inherit;
+    line-height: inherit;
+  }
+  [data-paper] {
+    --paper-line: var(--color-border-emphasized);
+    box-sizing: border-box;
+    width: 210mm;
+    max-width: 100%;
+    min-height: 297mm;
+    padding: 14mm 16mm 11mm;
+    display: flex;
+    flex-direction: column;
+    gap: 3.6mm;
+    background-color: var(--color-background-surface);
+    box-shadow: var(--shadow-med);
+    color: var(--color-text-primary);
+    font-size: 10pt;
+    line-height: 1.5;
+  }
+  [data-paper] h1,
+  [data-paper] h2,
+  [data-paper] h3,
+  [data-paper] p,
+  [data-paper] ul,
+  [data-paper] figure {
+    margin: 0;
+  }
+  [data-paper-head] {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding-bottom: 2mm;
+    border-bottom: 1.2pt solid var(--color-text-primary);
+  }
+  [data-paper-kind] {
+    font-size: 15pt;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  [data-paper-meta] {
+    font-size: 9.5pt;
+  }
+  [data-paper-title] {
+    font-size: 19pt;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  [data-paper-gist] {
+    display: flex;
+    gap: 4mm;
+    align-items: baseline;
+    padding: 3mm 4mm;
+    border: 0.75pt solid var(--paper-line);
+  }
+  [data-paper-gist-label] {
+    flex-shrink: 0;
+    font-weight: 700;
+  }
+  [data-paper-gist] p {
+    font-size: 10.5pt;
+  }
+  [data-paper-section] {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6mm;
+  }
+  [data-paper-h] {
+    font-size: 11.5pt;
+    font-weight: 700;
+  }
+  [data-paper-bullets] {
+    list-style: none;
+    padding: 0 0 0 1mm;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6mm;
+  }
+  [data-paper-bullets] > li {
+    position: relative;
+    padding-left: 4mm;
+  }
+  [data-paper-bullets] > li::before {
+    content: "◦";
+    position: absolute;
+    left: 0;
+  }
+  [data-paper-ref] {
+    font-size: 7pt;
+    margin-left: 0.6mm;
+  }
+
+  /* ---------- 표 ---------- */
+  [data-paper-table] {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9.5pt;
+  }
+  [data-paper-table] th,
+  [data-paper-table] td {
+    border: 0.5pt solid var(--paper-line);
+    padding: 1.3mm 2.2mm;
+    text-align: left;
+    vertical-align: top;
+    font-weight: 400;
+  }
+  [data-paper-kv] th {
+    width: 25mm;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  [data-paper-compare] thead th {
+    font-weight: 700;
+    border-bottom-width: 1pt;
+    white-space: nowrap;
+  }
+  [data-paper-compare] td:first-child {
+    white-space: nowrap;
+  }
+  [data-paper-compare] [data-num] {
+    text-align: right;
+    white-space: nowrap;
+  }
+  [data-paper-compare] [data-proposal-row] td {
+    font-weight: 700;
+  }
+  [data-paper-overview] {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 50mm;
+    gap: 4mm;
+    align-items: start;
+  }
+
+  /* ---------- 예시 시안(컨셉 카드 위쪽을 작게) ---------- */
+  [data-paper-sketch] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1mm;
+    padding: 2.5mm 3mm 3mm;
+    border: 0.5pt solid var(--paper-line);
+    text-align: center;
+    font-size: 8.5pt;
+    line-height: 1.4;
+  }
+  [data-paper-sketch-label] {
+    align-self: stretch;
+    padding-bottom: 1.2mm;
+    margin-bottom: 0.6mm;
+    border-bottom: 0.5pt solid var(--paper-line);
+    font-weight: 700;
+  }
+  [data-paper-sketch-name] {
+    font-size: 11pt;
+    font-weight: 700;
+  }
+  [data-paper-sketch-image] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 14mm;
+  }
+  [data-paper-sketch-image][data-photo] {
+    height: 42mm;
+  }
+  [data-paper-sketch-image] > img {
+    max-width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  [data-paper-sketch-shape] {
+    width: 13mm;
+    height: 13mm;
+  }
+  [data-paper-sketch-benefit] {
+    font-weight: 700;
+  }
+  [data-paper-sketch-points] {
+    list-style: none;
+    padding: 0;
+  }
+  [data-paper-sketch-price] {
+    align-self: flex-end;
+    font-weight: 700;
+    margin-top: 0.6mm;
+  }
+
+  /* ---------- 결과 보고서(지시서 22) ---------- */
+  [data-paper-review="weak"],
+  [data-paper-review="cannibal"] {
+    background-color: var(--color-warning-muted);
+    border-color: var(--color-border-warning);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  [data-paper-inflow] {
+    width: auto;
+    min-width: 50%;
+  }
+  [data-paper-bars] {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4mm;
+    padding: 1mm 0 0.6mm;
+  }
+  [data-paper-bar-row] {
+    display: grid;
+    grid-template-columns: 44mm minmax(0, 1fr) 22mm;
+    gap: 3mm;
+    align-items: center;
+    font-size: 9.5pt;
+  }
+  [data-paper-bar-name] {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.3;
+    min-width: 0;
+  }
+  [data-paper-bar-title] {
+    font-weight: 700;
+  }
+  [data-paper-bar-track] {
+    display: block;
+    height: 4mm;
+    border-bottom: 0.5pt solid var(--paper-line);
+  }
+  [data-paper-bar-fill] {
+    display: block;
+    height: 100%;
+    min-width: 0.6mm;
+    background-color: var(--color-border-emphasized);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  [data-paper-bar-fill][data-better] {
+    background-color: var(--color-accent);
+  }
+  [data-paper-bar-value] {
+    text-align: right;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+  [data-paper-voices] {
+    display: flex;
+    flex-direction: column;
+    gap: 2mm;
+  }
+  [data-paper-voice] {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8mm;
+    padding-left: 1mm;
+  }
+  [data-paper-voice-factor],
+  [data-paper-plan-title] {
+    font-weight: 700;
+  }
+  [data-paper-quote] {
+    margin: 0;
+    padding: 0.6mm 0 0.6mm 3mm;
+    border-left: 1pt solid var(--paper-line);
+  }
+  [data-paper-plans] {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0 1mm;
+    display: flex;
+    flex-direction: column;
+    gap: 1.6mm;
+  }
+  [data-paper-caution] {
+    font-weight: 400;
+  }
+  [data-paper-caution] [data-paper-gist-label] {
+    font-weight: 700;
+  }
+
+  /* ---------- 결과 보고서(지시서 32): 첫 장(결재용), 근거, 부록 ---------- */
+  [data-paper-spec] {
+    font-size: 10.5pt;
+    margin-top: 1mm;
+  }
+  [data-paper-recommend] {
+    border-width: 1.2pt;
+    border-color: var(--color-text-primary);
+  }
+  [data-paper-recommend-body] {
+    display: flex;
+    flex-direction: column;
+    gap: 1mm;
+  }
+  [data-paper-recommend-text] {
+    font-size: 12.5pt;
+    font-weight: 700;
+  }
+  [data-paper-decisions] {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0 1mm;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8mm;
+    font-size: 10.5pt;
+  }
+  [data-paper-decision-n] {
+    font-weight: 700;
+  }
+  [data-paper-key] {
+    table-layout: fixed;
+  }
+  [data-paper-key] thead th {
+    font-weight: 700;
+    font-size: 9pt;
+  }
+  [data-paper-key-value] {
+    display: block;
+    font-weight: 700;
+  }
+  [data-paper-key-note] {
+    display: block;
+    font-size: 8.5pt;
+  }
+  [data-paper-opinion-print] {
+    display: none;
+    white-space: pre-wrap;
+    min-height: 18mm;
+    padding: 1.5mm 2mm;
+    border: 0.5pt solid var(--paper-line);
+  }
+  [data-paper-opinion-print][data-empty] {
+    min-height: 24mm; /* 비어 있으면 손으로 적을 빈 칸 */
+  }
+  /* 고칠 곳이 없으면(대화 id가 없는 옛 응답) 화면에서도 인쇄 모양으로 */
+  [data-paper-opinion]:not(:has([data-paper-opinion-edit])) [data-paper-opinion-print] {
+    display: block;
+  }
+  [data-paper-disclaimer] {
+    font-size: 9pt;
+    font-weight: 700;
+  }
+  [data-paper-subsection],
+  [data-paper-next-part] {
+    display: flex;
+    flex-direction: column;
+    gap: 1mm;
+  }
+
+  /* ---------- 아래: 각주와 알림 ---------- */
+  [data-paper-foot] {
+    margin-top: auto;
+    padding-top: 2mm;
+    border-top: 0.5pt solid var(--paper-line);
+    display: flex;
+    flex-direction: column;
+    gap: 0.6mm;
+    font-size: 8pt;
+  }
+  [data-paper-sources] {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 5mm;
+  }
+
+  /* ---------- 작업대의 결과 보고서 단계(지시서 21): 종이째로 작업대의 폭에 맞춰 줄인다(zoom은 Paper를 쓰는 곳이 준다) ---------- */
+  [data-paper-fit] [data-paper] {
+    max-width: none;
+    flex-shrink: 0;
+  }
+
+  /* ---------- 인쇄: 위의 줄과 회색 바탕을 숨기고 종이마다 한 쪽 ---------- */
+  @media print {
+    @page {
+      size: A4;
+      margin: 0;
+    }
+    html,
+    body,
+    [data-proposal-screen],
+    [data-proposal-desk] {
+      background: none !important;
+    }
+    [data-proposal-bar] {
+      display: none !important;
+    }
+    [data-proposal-desk] {
+      display: block !important;
+      padding: 0 !important;
+    }
+    /* 종이의 인쇄 규칙은 제안서 화면의 종이에만(작업대 안의 종이에는 새지 않게, 지시서 21) */
+    [data-proposal-desk] [data-paper] {
+      width: 210mm;
+      max-width: none;
+      min-height: 296mm; /* 297mm 그대로면 반올림으로 빈 쪽이 하나 더 생길 수 있다 */
+      box-shadow: none;
+      break-after: page;
+    }
+    [data-proposal-desk] [data-paper]:last-child {
+      break-after: auto;
+    }
+    [data-paper-opinion-edit] {
+      display: none !important;
+    }
+    [data-paper-opinion-print] {
+      display: block !important;
+    }
+    [data-paper-table] tr,
+    [data-paper-sketch],
+    [data-paper-section],
+    [data-paper-gist],
+    [data-paper-plans] > li,
+    [data-paper-voice],
+    [data-paper-bar-row] {
+      break-inside: avoid;
+    }
+  }
+}

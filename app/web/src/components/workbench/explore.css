@@ -1,0 +1,230 @@
+.explore-card-content {
+  container-type: inline-size;
+  display: grid;
+  gap: 1.25rem;
+  min-width: 0;
+}
+.explore-card-title.astryx-heading {
+  font-size: var(--text-heading-1-size);
+  line-height: var(--text-heading-1-leading);
+}
+.explore-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .5rem 1rem;
+}
+.explore-summary {
+  border: 1px solid var(--color-border-emphasized);
+  border-radius: var(--radius-element);
+  overflow: hidden;
+}
+.explore-metrics {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 1rem;
+  padding: 1.125rem 1.5rem;
+}
+.explore-metric {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: start;
+  min-width: 0;
+  gap: .5rem;
+}
+.explore-status .astryx-text[data-type="label"] {
+  font-size: var(--text-supporting-size);
+  line-height: var(--text-supporting-leading);
+}
+.explore-leader.astryx-text {
+  font-size: var(--text-heading-2-size);
+  line-height: var(--text-heading-2-leading);
+}
+.explore-metric + .explore-metric {
+  border-inline-start: 1px solid var(--color-border-emphasized);
+  padding-inline-start: 1.5rem;
+}
+.explore-people { display: grid; gap: .15rem; }
+.explore-people i {
+  width: .4rem;
+  height: .4rem;
+  border-radius: var(--radius-full);
+  background: var(--color-border-emphasized);
+}
+.explore-people [data-picked] { background: var(--color-accent); }
+.explore-decision {
+  display: flex;
+  align-items: flex-start;
+  gap: .75rem;
+  background: var(--color-background-muted);
+  border-block-start: 1px solid var(--color-border-emphasized);
+  padding: .75rem 1.5rem;
+}
+.explore-decision > .astryx-icon { margin-block-start: .25rem; flex-shrink: 0; }
+.explore-chart { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; min-width: 0; --rate-label-width: 3.75rem; }
+.explore-chart-title.astryx-heading {
+  font-size: var(--text-heading-2-size);
+  line-height: var(--text-heading-2-leading);
+}
+.explore-table-frame { min-width: 0; }
+/* Astryx tables bleed to Card edges by default. Keep this chart inside its section. */
+.explore-table-frame .astryx-table-scroll-wrapper {
+  margin: 0;
+  inline-size: 100%;
+  border-radius: 0;
+  border-block: 1px solid var(--color-border-emphasized);
+}
+.explore-table-frame table :is(th, td) { padding: .75rem; }
+.explore-table-frame thead th {
+  vertical-align: top;
+  background: var(--color-background-muted);
+  color: var(--color-text-primary);
+  font-size: var(--text-supporting-size);
+  line-height: var(--text-supporting-leading);
+}
+.explore-table-frame tbody tr:last-child > :is(th, td) { border-block-end: 0; }
+.explore-age { width: 17%; }
+.explore-value {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--rate-label-width);
+  align-items: center;
+  column-gap: .75rem;
+}
+.explore-value > :last-child { text-align: end; }
+.explore-bar {
+  height: .625rem;
+  position: relative;
+  border-radius: var(--radius-full);
+  background: var(--color-background-muted);
+}
+.explore-fill {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  background: var(--color-icon-secondary);
+  border-radius: inherit;
+}
+.explore-fill[data-highlight] { background: var(--color-accent); }
+.explore-reference {
+  border-inline-start: 1px dashed var(--color-text-primary);
+  position: absolute;
+  top: -.16rem;
+  bottom: -.16rem;
+}
+.explore-average-guide {
+  position: relative;
+  width: calc(100% - var(--rate-label-width) - .75rem);
+  padding-bottom: .45rem;
+  margin-top: .25rem;
+  white-space: normal;
+}
+.explore-average-guide .astryx-text {
+  position: relative;
+  display: block;
+  width: min(100%, 7.5em);
+  left: clamp(0%, calc(var(--average-position) - 3.75em), calc(100% - 7.5em));
+  text-align: center;
+  word-break: keep-all;
+}
+.explore-average-guide .explore-reference { left: var(--average-position); top: auto; bottom: 0; height: .45rem; }
+.explore-detail { margin-block-start: .65rem; }
+.explore-occasion-name { width: 32%; }
+.explore-table-frame:has(.explore-occasions) .astryx-table-scroll-wrapper { border-block-start: 0; }
+.explore-table-frame .explore-occasions thead th {
+  background: transparent;
+  vertical-align: middle;
+  padding-block: .375rem;
+}
+.explore-occasions .explore-rate-heading { text-align: end; }
+.explore-rate-axis .explore-average-guide { width: 100%; margin-block-start: 0; }
+.explore-occasions .explore-count { width: 5rem; max-width: none; text-align: end; white-space: nowrap; }
+.explore-occasions th[scope="row"] { white-space: normal; word-break: keep-all; overflow-wrap: anywhere; }
+/* 좁은 화면에서는 탐색 카드와 대화를 각각 스크롤할 수 있게 위아래에 둔다. */
+@media (max-width: 48rem) {
+  [data-workbench-card] > .astryx-card:has(.explore-card-content) { padding: .75rem; }
+  [data-chat-workspace]:has(.explore-card-content) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 3fr) minmax(0, 1fr);
+  }
+  [data-chat-workspace]:has(.explore-card-content) > section {
+    grid-row: 2;
+    width: auto;
+    min-height: 0;
+    border-inline-end: 0;
+    border-block-start: 1px solid var(--color-border);
+  }
+  [data-chat-workspace]:has(.explore-card-content) > div {
+    grid-row: 1;
+    min-height: 0;
+  }
+}
+@container (max-width: 31rem) {
+  .explore-metrics { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); padding: 1rem; gap: .75rem; }
+  .explore-metric + .explore-metric { padding-inline-start: .75rem; }
+  .explore-decision { padding: .75rem 1rem; }
+  .explore-age { width: 26%; }
+  .explore-value { display: flex; flex-direction: column-reverse; align-items: stretch; gap: .35rem; }
+  .explore-value > :last-child { text-align: start; }
+  .explore-average-guide { width: 100%; }
+  .explore-table-frame table :is(td, th) { padding: .625rem .375rem; }
+  .explore-occasion-name { width: 34%; }
+  .explore-occasions .explore-rate-heading { text-align: start; }
+  .explore-occasions .explore-count { width: 3rem; }
+  .explore-table-frame th[scope="row"] { white-space: normal; }
+  .explore-peak.astryx-text { font-size: var(--text-display-2-size); line-height: var(--text-display-2-leading); }
+  .explore-leader.astryx-text { font-size: var(--text-large-size); line-height: var(--text-large-leading); }
+  .explore-mean.astryx-text { font-size: var(--text-heading-1-size); line-height: var(--text-heading-1-leading); }
+}
+@container (max-width: 23rem) {
+  .explore-metrics { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: .5rem; padding: .75rem; }
+  .explore-metric { gap: .25rem; }
+  .explore-metric > :first-child > .astryx-icon { display: none; }
+}
+@container (max-width: 15rem) {
+  .explore-metrics { grid-template-columns: 1fr; }
+  .explore-metric + .explore-metric { border-inline-start: 0; border-block-start: 1px solid var(--color-border); padding: .75rem 0 0; }
+  .explore-table-frame table :is(td, th) { padding-inline: .25rem; }
+  .explore-occasions .explore-count { width: 2.75rem; }
+}
+@container (max-width: 14rem) {
+  .explore-occasions, .explore-occasions :is(thead, tbody) { display: block; }
+  .explore-occasions tr {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) repeat(2, 2.75rem);
+    align-items: center;
+  }
+  .explore-occasions tr > :is(th, td) { max-width: none; min-width: 0; }
+  .explore-occasions tr > :first-child {
+    grid-column: 1 / -1;
+    width: auto;
+    max-width: none;
+    border-block-end: 0;
+    padding-block-end: 0;
+  }
+}
+.explore-axes-headline { border-block-start: 0; border-block-end: 1px solid var(--color-border-emphasized); }
+.explore-axes {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1.5rem;
+  padding: 1.125rem 1.5rem;
+}
+.explore-axis { display: flex; flex-direction: column; gap: .625rem; min-width: 0; }
+.explore-axis + .explore-axis {
+  border-inline-start: 1px solid var(--color-border-emphasized);
+  padding-inline-start: 1.5rem;
+}
+.explore-axis-row {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr) 6.5rem;
+  align-items: center;
+  column-gap: .75rem;
+}
+.explore-axis-value { display: flex; flex-direction: column; align-items: flex-end; line-height: 1.2; }
+@container (max-width: 560px) {
+  .explore-axes { grid-template-columns: minmax(0, 1fr); }
+  .explore-axis + .explore-axis { border-inline-start: 0; padding-inline-start: 0; }
+}

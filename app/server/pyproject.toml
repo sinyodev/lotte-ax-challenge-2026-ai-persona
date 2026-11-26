@@ -1,0 +1,28 @@
+[project]
+name = "chilseong-server"
+version = "0.1.0"
+description = "AX편의점의 서버. 칠성이의 이벤트를 AI SDK UI 메시지 스트림으로 내보낸다."
+requires-python = ">=3.12"
+dependencies = [
+    "duckdb==2.0.0",
+    "fastapi==0.165.0",
+    "openai>=3.58.0",
+    "openpyxl>=3.1.5",
+    "pandas>=3.1.1",
+    "pydantic==2.14.4",
+    "python-docx>=1.2.0",
+    "scipy>=1.18.1",
+    "uvicorn==0.54.0",
+]
+
+[dependency-groups]
+dev = [
+    "httpx==0.28.1",
+    "pytest==9.2.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests", "evals"]
+pythonpath = ["."]
+# starlette가 httpx 대신 httpx2를 권한다는 경고. 지시서가 허락한 httpx를 쓴다.
+filterwarnings = ["ignore:Using `httpx` with `starlette.testclient`"]

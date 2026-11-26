@@ -1,0 +1,603 @@
+{
+  "name": "zero-soda",
+  "sample": true,
+  "turns": [
+    [
+      {
+        "t": "stage",
+        "current": "idea"
+      },
+      {
+        "t": "card",
+        "id": "brief",
+        "stage": "idea",
+        "kind": "brief",
+        "title": "기획 브리프",
+        "status": "ready",
+        "payload": {
+          "fields": [
+            {
+              "key": "product",
+              "label": "제품",
+              "value": null,
+              "state": "asking"
+            },
+            {
+              "key": "channel",
+              "label": "채널",
+              "value": "세븐일레븐 음료 매대",
+              "note": "지금은 이 매대의 상품과 가격을 알고 있어요",
+              "state": "set"
+            },
+            {
+              "key": "target",
+              "label": "타깃",
+              "value": null,
+              "state": "empty"
+            },
+            {
+              "key": "occasion",
+              "label": "음용 상황",
+              "value": null,
+              "state": "empty"
+            },
+            {
+              "key": "need",
+              "label": "핵심 니즈",
+              "value": null,
+              "state": "empty"
+            }
+          ]
+        }
+      },
+      {
+        "t": "wait",
+        "ms": 400
+      },
+      {
+        "t": "say",
+        "text": "좋아요, 아이디어부터 컨셉 보드까지 같이 만들어요. 다섯 가지를 정하면 아이디어를 낼 수 있어서, 오른쪽 기획 브리프에 하나씩 채울게요. 먼저, 어떤 음료를 생각하세요?"
+      },
+      {
+        "t": "choices",
+        "id": "ask-product",
+        "kind": "single",
+        "options": [
+          {
+            "id": "zero-soda",
+            "label": "제로 탄산",
+            "note": "매대에 9개 있어요"
+          },
+          {
+            "id": "coffee",
+            "label": "커피",
+            "note": "매대에 12개 있어요"
+          },
+          {
+            "id": "tea",
+            "label": "차",
+            "note": "매대에 7개 있어요"
+          },
+          {
+            "id": "pick-for-me",
+            "label": "칠성이가 골라 줘"
+          }
+        ]
+      }
+    ],
+    [
+      {
+        "t": "activity",
+        "id": "look-shelf",
+        "label": "세븐일레븐 음료 매대를 보고 있어요",
+        "ms": 1000
+      },
+      {
+        "t": "card",
+        "id": "brief",
+        "stage": "idea",
+        "kind": "brief",
+        "title": "기획 브리프",
+        "status": "ready",
+        "payload": {
+          "fields": [
+            {
+              "key": "product",
+              "label": "제품",
+              "value": "제로 탄산",
+              "state": "set"
+            },
+            {
+              "key": "channel",
+              "label": "채널",
+              "value": "세븐일레븐 음료 매대",
+              "note": "지금은 이 매대의 상품과 가격을 알고 있어요",
+              "state": "set"
+            },
+            {
+              "key": "target",
+              "label": "타깃",
+              "value": null,
+              "state": "asking"
+            },
+            {
+              "key": "occasion",
+              "label": "음용 상황",
+              "value": null,
+              "state": "empty"
+            },
+            {
+              "key": "need",
+              "label": "핵심 니즈",
+              "value": null,
+              "state": "empty"
+            }
+          ]
+        }
+      },
+      {
+        "t": "say",
+        "text": "세븐일레븐 음료 매대를 봤어요. 제로 탄산이 9개인데 500ml 페트는 하나뿐이에요. 누구에게 팔지에 따라 아이디어가 달라져요. 타깃은 누구로 볼까요?"
+      },
+      {
+        "t": "choices",
+        "id": "ask-target",
+        "kind": "single",
+        "options": [
+          {
+            "id": "20s-worker",
+            "label": "20대 직장인",
+            "note": "당을 신경 쓰는 사람 82%"
+          },
+          {
+            "id": "30s-40s-worker",
+            "label": "30~40대 직장인",
+            "note": "오후에 가장 많이 마셔요"
+          },
+          {
+            "id": "pick-for-me",
+            "label": "칠성이가 골라 줘"
+          }
+        ]
+      }
+    ],
+    [
+      {
+        "t": "card",
+        "id": "brief",
+        "stage": "idea",
+        "kind": "brief",
+        "title": "기획 브리프",
+        "status": "ready",
+        "payload": {
+          "fields": [
+            {
+              "key": "product",
+              "label": "제품",
+              "value": "제로 탄산",
+              "state": "set"
+            },
+            {
+              "key": "channel",
+              "label": "채널",
+              "value": "세븐일레븐 음료 매대",
+              "note": "지금은 이 매대의 상품과 가격을 알고 있어요",
+              "state": "set"
+            },
+            {
+              "key": "target",
+              "label": "타깃",
+              "value": "20대 직장인",
+              "state": "set"
+            },
+            {
+              "key": "occasion",
+              "label": "음용 상황",
+              "value": null,
+              "state": "asking"
+            },
+            {
+              "key": "need",
+              "label": "핵심 니즈",
+              "value": null,
+              "state": "empty"
+            }
+          ]
+        }
+      },
+      {
+        "t": "wait",
+        "ms": 500
+      },
+      {
+        "t": "say",
+        "text": "20대 직장인으로 볼게요. 이분들은 오후에 일하다가 혼자 마실 때가 가장 많아요. 이 상황으로 잡을까요?"
+      },
+      {
+        "t": "choices",
+        "id": "ask-occasion",
+        "kind": "single",
+        "options": [
+          {
+            "id": "afternoon-work",
+            "label": "오후에 일하다가",
+            "note": "34%"
+          },
+          {
+            "id": "with-lunch",
+            "label": "점심 식사와 함께",
+            "note": "21%"
+          },
+          {
+            "id": "no-occasion",
+            "label": "상황은 정하지 않기"
+          }
+        ]
+      }
+    ],
+    [
+      {
+        "t": "activity",
+        "id": "make-ideas",
+        "label": "아이디어를 내고 있어요",
+        "ms": 1000
+      },
+      {
+        "t": "card",
+        "id": "brief",
+        "stage": "idea",
+        "kind": "brief",
+        "title": "기획 브리프",
+        "status": "ready",
+        "payload": {
+          "fields": [
+            {
+              "key": "product",
+              "label": "제품",
+              "value": "제로 탄산",
+              "state": "set"
+            },
+            {
+              "key": "channel",
+              "label": "채널",
+              "value": "세븐일레븐 음료 매대",
+              "note": "지금은 이 매대의 상품과 가격을 알고 있어요",
+              "state": "set"
+            },
+            {
+              "key": "target",
+              "label": "타깃",
+              "value": "20대 직장인",
+              "state": "set"
+            },
+            {
+              "key": "occasion",
+              "label": "음용 상황",
+              "value": "오후에 일하다가, 혼자",
+              "state": "set"
+            },
+            {
+              "key": "need",
+              "label": "핵심 니즈",
+              "value": "당 걱정 없이 기분 전환",
+              "state": "set",
+              "note": "칠성이가 골랐어요"
+            }
+          ]
+        }
+      },
+      {
+        "t": "card",
+        "id": "ideas",
+        "stage": "idea",
+        "kind": "ideas",
+        "title": "아이디어",
+        "status": "ready",
+        "payload": {
+          "basis": "오후에 일하다가 마시는 20대 직장인은 \"당 걱정 없이 기분 전환\"을 가장 바라요",
+          "items": [
+            {
+              "id": "a",
+              "name": "제로 라임 스파클링 캔",
+              "flavor": "라임",
+              "pack": "캔 355ml",
+              "features": [
+                "당 0",
+                "카페인 없음",
+                "탄산"
+              ],
+              "line": "한 손에 들고 한 번에 마셔요",
+              "diff": "셋 중 가장 작아요"
+            },
+            {
+              "id": "b",
+              "name": "제로 라임 스파클링 페트",
+              "flavor": "라임",
+              "pack": "페트 500ml",
+              "features": [
+                "당 0",
+                "카페인 없음",
+                "탄산"
+              ],
+              "line": "책상에 두고 오후 내내 나눠 마셔요",
+              "diff": "A와 용기와 용량만 달라요"
+            },
+            {
+              "id": "c",
+              "name": "제로 자몽 스파클링 페트",
+              "flavor": "자몽",
+              "pack": "페트 500ml",
+              "features": [
+                "당 0",
+                "카페인 없음",
+                "탄산"
+              ],
+              "line": "쌉쌀해서 단맛 없이 개운해요",
+              "diff": "B와 맛만 달라요"
+            }
+          ]
+        }
+      },
+      {
+        "t": "say",
+        "text": "이 상황의 20대 직장인이 가장 바라는 건 \"당 걱정 없이 기분 전환\"이에요. 이 니즈로 아이디어 세 개를 냈고, 맛과 용기가 달라요. 컨셉으로 만들 것을 골라 주세요."
+      },
+      {
+        "t": "choices",
+        "id": "pick-ideas",
+        "kind": "multi",
+        "options": [
+          {
+            "id": "a",
+            "label": "A 제로 라임 스파클링 캔",
+            "note": "라임, 캔 355ml"
+          },
+          {
+            "id": "b",
+            "label": "B 제로 라임 스파클링 페트",
+            "note": "라임, 페트 500ml"
+          },
+          {
+            "id": "c",
+            "label": "C 제로 자몽 스파클링 페트",
+            "note": "자몽, 페트 500ml"
+          }
+        ]
+      }
+    ],
+    [
+      {
+        "t": "stage",
+        "current": "concept"
+      },
+      {
+        "t": "activity",
+        "id": "make-concepts",
+        "label": "컨셉 보드를 만들고 있어요",
+        "ms": 1000
+      },
+      {
+        "t": "card",
+        "id": "concepts",
+        "stage": "concept",
+        "kind": "concepts",
+        "title": "컨셉 보드",
+        "status": "ready",
+        "payload": {
+          "items": [
+            {
+              "id": "a",
+              "name": "라임 제로 캔",
+              "headline": "오후 세 시, 당 없이 한 캔",
+              "benefit": "한 번에 마시고 자리로 돌아가요",
+              "points": [
+                "당 0g",
+                "라임 향",
+                "강한 탄산"
+              ],
+              "price": "1,500원",
+              "pack": "355ml 캔",
+              "spec": [
+                {
+                  "key": "type",
+                  "label": "제품 유형",
+                  "value": "제로 탄산"
+                },
+                {
+                  "key": "flavor",
+                  "label": "맛",
+                  "value": "라임"
+                },
+                {
+                  "key": "pack",
+                  "label": "용기와 용량",
+                  "value": "355ml 캔"
+                },
+                {
+                  "key": "sugar_caffeine",
+                  "label": "당, 카페인",
+                  "value": "당 0g, 카페인 없음"
+                },
+                {
+                  "key": "carbonation",
+                  "label": "탄산",
+                  "value": "강함"
+                },
+                {
+                  "key": "target",
+                  "label": "타깃",
+                  "value": "20대 직장인"
+                },
+                {
+                  "key": "occasion",
+                  "label": "음용 상황",
+                  "value": "오후에 일하다가"
+                },
+                {
+                  "key": "channel",
+                  "label": "판매 채널",
+                  "value": "세븐일레븐 음료 매대(냉장)"
+                },
+                {
+                  "key": "price",
+                  "label": "목표 판매가",
+                  "value": "1,500원"
+                },
+                {
+                  "key": "rivals",
+                  "label": "경쟁 제품",
+                  "value": "칠성사이다 캔 355ml 2,100원 2+1\n펩시콜라 캔 355ml 2,100원 1+1"
+                },
+                {
+                  "key": "pod",
+                  "label": "차별점",
+                  "value": "당 0g에 라임 향"
+                }
+              ]
+            },
+            {
+              "id": "b",
+              "name": "라임 제로 페트",
+              "headline": "책상 위의 기분 전환",
+              "benefit": "뚜껑을 닫아 두고 오후 내내 마셔요",
+              "points": [
+                "당 0g",
+                "라임 향",
+                "다시 닫는 뚜껑"
+              ],
+              "price": "2,000원",
+              "pack": "500ml 페트",
+              "spec": [
+                {
+                  "key": "type",
+                  "label": "제품 유형",
+                  "value": "제로 탄산"
+                },
+                {
+                  "key": "flavor",
+                  "label": "맛",
+                  "value": "라임"
+                },
+                {
+                  "key": "pack",
+                  "label": "용기와 용량",
+                  "value": "500ml 페트"
+                },
+                {
+                  "key": "sugar_caffeine",
+                  "label": "당, 카페인",
+                  "value": "당 0g, 카페인 없음"
+                },
+                {
+                  "key": "carbonation",
+                  "label": "탄산",
+                  "value": "보통"
+                },
+                {
+                  "key": "target",
+                  "label": "타깃",
+                  "value": "20대 직장인"
+                },
+                {
+                  "key": "occasion",
+                  "label": "음용 상황",
+                  "value": "오후에 일하다가"
+                },
+                {
+                  "key": "channel",
+                  "label": "판매 채널",
+                  "value": "세븐일레븐 음료 매대(냉장)"
+                },
+                {
+                  "key": "price",
+                  "label": "목표 판매가",
+                  "value": "2,000원"
+                },
+                {
+                  "key": "rivals",
+                  "label": "경쟁 제품",
+                  "value": "칠성사이다 제로 페트 500ml 2,500원 1+1\n펩시 제로슈거 라임 페트 500ml 2,500원 1+1"
+                },
+                {
+                  "key": "pod",
+                  "label": "차별점",
+                  "value": "오후 내내 나눠 마시는 라임 향"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "t": "say",
+        "text": "고른 아이디어 두 개를 컨셉으로 만들었어요. 가격은 매대의 비슷한 제품을 보고 잡았어요. 고칠 곳이 있으면 말해 주세요."
+      },
+      {
+        "t": "actions",
+        "id": "after-concepts",
+        "actions": [
+          {
+            "id": "confirm-concepts",
+            "label": "컨셉 확정하기",
+            "note": "이 두 컨셉으로 정해요",
+            "primary": true
+          },
+          {
+            "id": "change-price",
+            "label": "가격 바꾸기",
+            "note": "컨셉의 가격을 다시 정해요"
+          },
+          {
+            "id": "more-concepts",
+            "label": "컨셉 더 만들기",
+            "note": "남은 아이디어도 컨셉으로 만들어요"
+          }
+        ]
+      }
+    ],
+    [
+      {
+        "t": "wait",
+        "ms": 500
+      },
+      {
+        "t": "summary",
+        "id": "summary-concepts",
+        "title": "확정한 컨셉",
+        "value": "2개",
+        "note": "라임 제로 캔, 라임 제로 페트"
+      },
+      {
+        "t": "say",
+        "text": "컨셉 두 개를 확정했어요. 여기까지가 컨셉 만들기예요. 다음은 이 컨셉을 세븐일레븐 매대에 올리고, 가상 소비자가 고르는지 보는 매대 테스트예요."
+      },
+      {
+        "t": "actions",
+        "id": "after-confirm",
+        "actions": [
+          {
+            "id": "to-shelf-test",
+            "label": "매대 테스트로 넘어가기",
+            "note": "두 컨셉을 가상 매대에 올려요",
+            "primary": true
+          },
+          {
+            "id": "download-board",
+            "label": "컨셉 보드 내려받기",
+            "note": "한 장으로 저장해요"
+          }
+        ]
+      }
+    ]
+  ],
+  "after": [
+    {
+      "t": "wait",
+      "ms": 400
+    },
+    {
+      "t": "say",
+      "text": "매대 테스트는 아직 준비하고 있어요. 이 견본 대화는 여기까지예요."
+    }
+  ]
+}

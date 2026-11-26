@@ -1,0 +1,8 @@
+node_modules
+dist
+*.tsbuildinfo
+.vite
+# 테마 편집기가 바뀔 때마다 새로 만드는 미리보기
+themes/*/preview.html
+themes/*/sheet.html
+themes/*/*.png

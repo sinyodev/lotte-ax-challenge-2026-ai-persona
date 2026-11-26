@@ -1,0 +1,7 @@
+allowBuilds:
+  "@astryxdesign/cli": false
+  "@astryxdesign/core": false
+minimumReleaseAgeExclude:
+  - '@ai-sdk/gateway@4.0.150'
+  - '@ai-sdk/react@4.0.181'
+  - ai@7.0.177

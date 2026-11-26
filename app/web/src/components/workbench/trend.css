@@ -1,0 +1,135 @@
+@layer components {
+  /* 트렌드 조사 카드. 선은 강조색 하나와 중립색 하나만 쓴다. */
+  .trend-reasons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    padding-inline-start: 1.125rem;
+    list-style: disc;
+    word-break: keep-all;
+  }
+  .trend-reasons li::marker {
+    color: var(--color-text-secondary);
+  }
+  .trend-figure {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    min-width: 0;
+  }
+  .trend-svg {
+    display: block;
+    overflow: visible;
+  }
+  .trend-svg text {
+    font-family: var(--font-family-body);
+    font-size: var(--font-size-xs);
+    font-variant-numeric: tabular-nums;
+    fill: var(--color-text-secondary);
+  }
+  .trend-line {
+    fill: none;
+    stroke-width: 2;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+  }
+  .trend-line--accent {
+    stroke: var(--color-accent);
+  }
+  .trend-line--muted {
+    stroke: var(--color-text-secondary);
+    stroke-dasharray: 4 3;
+    stroke-width: 1.5;
+  }
+  .trend-area {
+    fill: var(--color-accent);
+    opacity: 0.08;
+  }
+  .trend-peak circle {
+    fill: var(--color-accent);
+  }
+  .trend-peak text {
+    fill: var(--color-text-primary);
+    font-weight: var(--font-weight-medium);
+  }
+  .trend-axis line {
+    stroke: var(--color-border);
+  }
+  .trend-key {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+  }
+  .trend-key::before {
+    content: "";
+    inline-size: 1rem;
+    border-block-start: 2px solid var(--color-accent);
+  }
+  .trend-key--muted::before {
+    border-block-start: 2px dashed var(--color-text-secondary);
+  }
+  .trend-high {
+    margin-inline-start: auto;
+  }
+  .trend-more .astryx-collapsible-trigger {
+    padding-inline: 0;
+    padding-block: 0.375rem;
+    min-height: 0;
+  }
+  .trend-table {
+    inline-size: 100%;
+    border-collapse: collapse;
+    font-variant-numeric: tabular-nums;
+  }
+  .trend-table th,
+  .trend-table td {
+    padding: 0.25rem 0.5rem;
+    text-align: end;
+    border-block-end: 1px solid var(--color-border);
+    white-space: nowrap;
+  }
+  .trend-table th:first-child {
+    text-align: start;
+    padding-inline-start: 0;
+  }
+  .trend-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+  .trend-bars li {
+    display: grid;
+    grid-template-columns: minmax(6rem, 12rem) 1fr 3.5rem;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .trend-bars li > :last-child {
+    text-align: end;
+    font-variant-numeric: tabular-nums;
+  }
+  .trend-bar {
+    display: block;
+    block-size: 0.5rem;
+    border-radius: 999px;
+    background-color: var(--color-neutral);
+    overflow: hidden;
+  }
+  .trend-bar > span {
+    display: block;
+    block-size: 100%;
+    background-color: var(--color-text-secondary);
+  }
+  .trend-news {
+    padding-block-start: 1rem;
+    border-block-start: 1px solid var(--color-border);
+  }
+  .trend-news-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-block: 0.375rem;
+  }
+  .trend-news-row + .trend-news-row {
+    border-block-start: 1px solid var(--color-border);
+  }
+}

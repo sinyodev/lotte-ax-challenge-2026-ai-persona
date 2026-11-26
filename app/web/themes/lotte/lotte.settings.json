@@ -1,0 +1,295 @@
+{
+  "name": "lotte",
+  "like": "neutral",
+  "mode": "light-only",
+  "settings": [
+    {
+      "thing": "accent",
+      "value": "#DA291C",
+      "source": "dial"
+    },
+    {
+      "thing": "corners",
+      "value": "round",
+      "source": "dial"
+    },
+    {
+      "thing": "corners",
+      "value": "pill",
+      "source": "dial",
+      "on": "button"
+    },
+    {
+      "thing": "corners",
+      "value": "pill",
+      "source": "dial",
+      "on": "token"
+    },
+    {
+      "thing": "--shadow-inset-selected",
+      "value": "inset 0px 0px 0px 2px #DA291C",
+      "source": "token",
+      "note": "no part the editor rendered reads --shadow-inset-selected (each part is rendered once, with its default props, so a variant that reads it may be missed); it is set as asked, and reaches any part that reads it"
+    },
+    {
+      "thing": "font",
+      "value": "\"Pretendard Variable\", Pretendard, sans-serif",
+      "source": "dial"
+    },
+    {
+      "thing": "text-size",
+      "value": "large",
+      "source": "dial"
+    },
+    {
+      "thing": "--text-display-2-size",
+      "value": "2.25rem",
+      "source": "token"
+    },
+    {
+      "thing": "--text-display-2-leading",
+      "value": "1.15",
+      "source": "token"
+    },
+    {
+      "thing": "--text-display-2-weight",
+      "value": "var(--font-weight-semibold)",
+      "source": "token"
+    },
+    {
+      "thing": "letter-spacing",
+      "value": "-0.02em",
+      "source": "property",
+      "on": "heading",
+      "when": "type:display-2"
+    },
+    {
+      "thing": "--color-border",
+      "value": "#EBEBEB",
+      "source": "token"
+    },
+    {
+      "thing": "--color-text-secondary",
+      "value": "#8E8E93",
+      "source": "token"
+    },
+    {
+      "thing": "--color-text-primary",
+      "value": "#111111",
+      "source": "token"
+    },
+    {
+      "thing": "padding",
+      "value": "8px",
+      "source": "property",
+      "on": "app-shell-sidenav"
+    },
+    {
+      "thing": "border-radius",
+      "value": "16px",
+      "source": "property",
+      "on": "side-nav"
+    },
+    {
+      "thing": "--color-neutral",
+      "value": "#FFFFFF",
+      "source": "token",
+      "on": "side-nav",
+      "note": "feeds background-color on side-nav-item inside side-nav (when selected=selected), background-color on side-nav-item inside side-nav (when selected=selected :hover), background-color on side-nav-item inside side-nav (when selected=selected :active)"
+    },
+    {
+      "thing": "border-radius",
+      "value": "10px",
+      "source": "property",
+      "on": "side-nav-item"
+    },
+    {
+      "thing": "height",
+      "value": "36px",
+      "source": "property",
+      "on": "side-nav-item"
+    },
+    {
+      "thing": "border-radius",
+      "value": "12px",
+      "source": "property",
+      "on": "item"
+    },
+    {
+      "thing": "color",
+      "value": "var(--color-text-secondary)",
+      "source": "property",
+      "on": "side-nav-item"
+    },
+    {
+      "thing": "color",
+      "value": "var(--color-text-primary)",
+      "source": "property",
+      "on": "side-nav-item",
+      "state": "selected"
+    },
+    {
+      "thing": "background-color",
+      "value": "var(--color-background-surface)",
+      "source": "property",
+      "on": "item",
+      "state": "selected"
+    },
+    {
+      "thing": "height",
+      "value": "44px",
+      "source": "property",
+      "on": "token",
+      "when": "size:lg"
+    },
+    {
+      "thing": "padding-inline",
+      "value": "18px",
+      "source": "property",
+      "on": "token",
+      "when": "size:lg"
+    },
+    {
+      "thing": "font-size",
+      "value": "var(--text-label-size)",
+      "source": "property",
+      "on": "token",
+      "when": "size:lg"
+    },
+    {
+      "thing": "background-color",
+      "value": "var(--color-background-surface)",
+      "source": "property",
+      "on": "token"
+    },
+    {
+      "thing": "box-shadow",
+      "value": "inset 0 0 0 1px var(--color-border)",
+      "source": "property",
+      "on": "token"
+    },
+    {
+      "thing": "--color-background-muted",
+      "value": "#F7F7F8",
+      "source": "token"
+    },
+    {
+      "thing": "background",
+      "value": "var(--color-background-muted)",
+      "source": "property",
+      "on": "side-nav"
+    },
+    {
+      "thing": "background-color",
+      "value": "var(--color-background-muted)",
+      "source": "property",
+      "on": "token",
+      "state": "hover"
+    },
+    {
+      "thing": "--color-neutral",
+      "value": "#F2F2F3",
+      "source": "token"
+    },
+    {
+      "thing": "--radius-chat",
+      "value": "20px",
+      "source": "token",
+      "on": "chat-composer",
+      "note": "There is no compiled record of what chat-composer reads (it did not render in the catalog), so this change could not be checked."
+    },
+    {
+      "thing": "background-color",
+      "value": "var(--color-accent)",
+      "source": "property",
+      "on": "card",
+      "when": "variant:red"
+    },
+    {
+      "thing": "color",
+      "value": "var(--color-on-accent)",
+      "source": "property",
+      "on": "card",
+      "when": "variant:red"
+    },
+    {
+      "thing": "border-radius",
+      "value": "22px",
+      "source": "property",
+      "on": "card",
+      "when": "variant:red"
+    },
+    {
+      "thing": "box-shadow",
+      "value": "none",
+      "source": "property",
+      "on": "card",
+      "when": "variant:red"
+    },
+    {
+      "thing": "--color-icon-secondary",
+      "value": "#8E8E93",
+      "source": "token"
+    },
+    {
+      "thing": "--color-icon-accent",
+      "value": "var(--color-accent)",
+      "source": "token"
+    },
+    {
+      "thing": "--size-element-md",
+      "value": "36px",
+      "source": "token",
+      "on": "chat-send-button",
+      "note": "There is no compiled record of what chat-send-button reads (it did not render in the catalog), so this change could not be checked."
+    },
+    {
+      "thing": "padding-inline",
+      "value": "4px",
+      "source": "property",
+      "on": "side-nav"
+    },
+    {
+      "thing": "min-height",
+      "value": "44px",
+      "source": "property",
+      "on": "chat-composer-input"
+    },
+    {
+      "thing": "--spacing-3",
+      "value": "14px",
+      "source": "token",
+      "on": "chat-composer",
+      "note": "There is no compiled record of what chat-composer reads (it did not render in the catalog), so this change could not be checked."
+    },
+    {
+      "thing": "background-color",
+      "value": "var(--color-background-gray)",
+      "source": "property",
+      "on": "avatar-fallback"
+    },
+    {
+      "thing": "--color-background-body",
+      "value": "#FFFFFF",
+      "source": "token"
+    },
+    {
+      "thing": "--shadow-low",
+      "value": "0 10px 20px -12px rgb(0 0 0 / 10%), 0 1px 2px rgb(0 0 0 / 4%), inset 0 0 0 1px var(--color-border)",
+      "source": "token",
+      "on": "chat-composer",
+      "note": "There is no compiled record of what chat-composer reads (it did not render in the catalog), so this change could not be checked."
+    },
+    {
+      "thing": "--shadow-med",
+      "value": "0 12px 24px -12px rgb(0 0 0 / 14%), 0 1px 2px rgb(0 0 0 / 5%), inset 0 0 0 1px var(--color-border)",
+      "source": "token",
+      "on": "chat-composer",
+      "note": "There is no compiled record of what chat-composer reads (it did not render in the catalog), so this change could not be checked."
+    }
+  ],
+  "lifted": [
+    "side-nav-item selected:selected color"
+  ],
+  "palette": "c67ab349eb44c14003ba8d94c7696a550b1e80a38cdba360f715199eb9b5733c"
+}

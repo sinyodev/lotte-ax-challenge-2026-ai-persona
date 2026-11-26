@@ -1,0 +1,254 @@
+@layer components {
+  /* 테스트 결과(보고서 한 장). 뼈대와 숫자 줄은 analysis-report.css의 것을 같이 쓴다.
+     글씨의 위계는 넷: 결론(display-3) → 숫자(display-2) → 구역의 한 문장(heading-3) → 표의 글(body).
+     이름표(구역 이름, 칸 머리)는 모두 같은 작은 글씨다. */
+  .rr-eyebrow,
+  .rr-quotes__head {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+  }
+
+  /* 구역 넷: 두 칸씩. 구역 안의 세 줄(이름, 한 문장, 근거)은 옆 구역과 높이를 맞춘다 */
+  .rr-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .rr-cell {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 3;
+    row-gap: 0.375rem;
+    min-width: 0;
+    padding-block: 1.5rem;
+  }
+  .rr-cell + .rr-cell {
+    border-top: 1px solid var(--color-border);
+  }
+  @container (min-width: 52rem) {
+    .rr-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .rr-cell:nth-child(odd) {
+      padding-inline-end: 1.75rem;
+    }
+    .rr-cell:nth-child(even) {
+      padding-inline-start: 1.75rem;
+      border-inline-start: 1px solid var(--color-border);
+    }
+    .rr-cell:nth-child(2) {
+      border-top: 0;
+    }
+  }
+  .rr-cell__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.25rem 1rem;
+    min-height: 1.5rem;
+  }
+  .rr-cell__body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    min-width: 0;
+    padding-top: 0.875rem;
+  }
+
+  /* 범례의 네모: 이번 컨셉(강조색), 자사(짙은 것), 경쟁사(옅은 것) */
+  .rr-key > i {
+    width: 0.75rem;
+    height: 0.75rem;
+    border: 0;
+    border-radius: var(--radius-inner);
+    background: var(--color-text-primary);
+  }
+  .rr-key[data-tone="accent"] > i {
+    background: var(--color-accent);
+  }
+  .rr-key[data-tone="faint"] > i {
+    background: var(--color-border-emphasized);
+  }
+
+  /* 막대 표: 이름은 왼쪽 줄, 막대는 같은 칸에서 시작, 숫자는 오른쪽 줄 */
+  .rr-bars {
+    width: 100%;
+    border-collapse: collapse;
+    font-variant-numeric: tabular-nums;
+  }
+  .rr-bars th,
+  .rr-bars td {
+    padding: 0.4375rem 0;
+    font-weight: inherit;
+    text-align: start;
+    vertical-align: middle;
+  }
+  .rr-bars thead > tr > * {
+    padding-block: 0 0.5rem;
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    border-bottom: 1px solid var(--color-border-emphasized);
+  }
+  .rr-bars tbody > tr:first-child > * {
+    padding-top: 0.75rem;
+  }
+  .rr-bars tbody > tr > th,
+  .rr-bars tfoot > tr > th {
+    width: 1%;
+    max-width: 15rem;
+    padding-inline-end: 1.25rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .rr-bars [data-num] {
+    width: 1%;
+    padding-inline-start: 1rem;
+    text-align: end;
+    white-space: nowrap;
+  }
+  .rr-bars tr[data-strong] > th,
+  .rr-bars tr[data-strong] > [data-num] {
+    font-weight: var(--font-weight-semibold);
+  }
+  .rr-bars[data-dots] tbody > tr > th {
+    width: auto;
+  }
+  .rr-bars__bar {
+    min-width: 4.5rem;
+  }
+  .rr-bars__bar > span {
+    position: relative;
+    display: block;
+    height: 0.75rem;
+    border-radius: var(--radius-inner);
+  }
+  .rr-bars[data-track] .rr-bars__bar > span {
+    background: var(--color-border);
+  }
+  .rr-bars__bar i {
+    display: block;
+    height: 100%;
+    border-radius: var(--radius-inner);
+    background: var(--color-text-primary);
+  }
+  .rr-bars__bar i[data-tone="accent"] {
+    background: var(--color-accent);
+  }
+  .rr-bars__bar i[data-tone="faint"] {
+    background: var(--color-border-emphasized);
+  }
+  /* 기준선(전체 선택률): 줄마다 이어지는 세로 점선 */
+  .rr-bars[data-mark] .rr-bars__bar > span::after {
+    content: "";
+    position: absolute;
+    inset-block: -0.5rem;
+    inset-inline-start: var(--rr-mark);
+    border-inline-start: 1px dashed var(--color-text-secondary);
+  }
+  /* 굵은 줄 아래에 따로 둔 줄(전체) */
+  .rr-bars tbody > tr:last-child > * {
+    padding-bottom: 0.75rem;
+  }
+  .rr-bars tfoot > tr > * {
+    padding-top: 0.75rem;
+    padding-bottom: 0;
+    border-top: 1px solid var(--color-border-emphasized);
+    font-weight: var(--font-weight-medium);
+  }
+  .rr-bars:not(:has(tfoot)) tbody > tr:last-child > * {
+    padding-bottom: 0;
+  }
+
+  /* 한 줄을 몫대로 나눈 막대 */
+  .rr-parts {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+  .rr-parts__bar {
+    display: flex;
+    gap: 3px;
+    height: 1.75rem;
+  }
+  .rr-parts__bar > i {
+    flex: 1 0 0;
+    min-width: 0.25rem;
+    border-radius: var(--radius-inner);
+    background: var(--color-text-primary);
+  }
+  .rr-parts__bar > i[data-tone="faint"] {
+    background: var(--color-border-emphasized);
+  }
+  .rr-parts__legend {
+    display: flex;
+    gap: 3px;
+  }
+  .rr-parts__legend > div {
+    display: flex;
+    flex: 1 0 0;
+    flex-direction: column;
+    gap: 0.125rem;
+    min-width: max-content;
+  }
+
+  /* 가상 소비자의 말: 두 묶음, 묶음의 머리는 표의 칸 머리와 같은 모양 */
+  .rr-voices {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-block: 1.5rem 0.25rem;
+  }
+  .rr-quotes {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem 3.5rem;
+  }
+  @container (min-width: 52rem) {
+    .rr-quotes {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .rr-quotes > div {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+  .rr-quotes__head {
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border-emphasized);
+  }
+  .rr-quote {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    margin: 0;
+    padding-block: 0.875rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .rr-quote:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+  .rr-quote blockquote {
+    margin: 0;
+  }
+  .rr-quote figcaption {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+  }
+  .rr-quote__who {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+    min-width: 0;
+  }
+  .rr-quote figcaption > :last-child:not(.rr-quote__who) {
+    flex: none;
+  }
+}

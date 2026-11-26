@@ -1,0 +1,12 @@
+@layer components {
+  /* 작업대의 접히는 카드: 머리 한 줄 전체가 누르는 곳이다. 카드 안쪽 여백은 카드(padding 5)와 같게 맞춘다. */
+  .workbench-fold .astryx-collapsible-trigger {
+    width: 100%;
+    padding: 1.25rem;
+    min-height: 0;
+    text-align: start;
+  }
+  [data-fold="closed"] .workbench-fold .astryx-collapsible-trigger {
+    padding-block: 0.875rem;
+  }
+}
